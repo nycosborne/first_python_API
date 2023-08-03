@@ -15,10 +15,11 @@ stores = [
 ]
 
 
-
-
-
-
 @app.get("/store")
 def get_store():
     return {"stores": stores}
+
+
+@app.post("/store")
+def add_item():
+    pass
