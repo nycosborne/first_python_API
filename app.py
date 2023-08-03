@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -7,7 +7,7 @@ stores = [
         "name": "Super Store",
         "items": [
             {
-                "name": "Chaor",
+                "name": "table",
                 "price": 15.99
             }
         ]
@@ -21,5 +21,13 @@ def get_store():
 
 
 @app.post("/store")
-def add_item():
-    pass
+def create_store():
+    request_data = request.get_json()
+    new_store = {"name": request_data["name"], "items": []}
+    stores.append(new_store)
+    return new_store, 201
+
+
+# @app.post("/store/<string:name>")
+# def create_item(name):
+#     return name, 201
